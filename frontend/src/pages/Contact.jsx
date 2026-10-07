@@ -337,7 +337,7 @@ function Contact() {
               {/* Close Button */}
               <button
                 type="button"
-                onClick={() => setAlertMsg("")}
+                onClick={() => setAlerthMsg("")}
                 className=" cursor-pointer text-xl font-bold opacity-60 transition hover:opacity-100"
                 aria-label="Close"
               >
