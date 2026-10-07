@@ -15,9 +15,11 @@ const transporter = nodemailer.createTransport({
         pass: process.env.EMAILPASS,
     },
 
-    connectionTimeout: 30000,
-    greetingTimeout: 30000,
-    socketTimeout: 30000,
+    requireTLS: true,
+
+    connectionTimeout: 60000,
+    greetingTimeout: 60000,
+    socketTimeout: 60000,
 });
 
 transporter.verify((error, success) => {
@@ -25,8 +27,7 @@ transporter.verify((error, success) => {
         console.log("❌ Gmail SMTP Connection Failed");
         console.log(error);
     } else {
-        console.log("✅ Gmail Authentication Successful");
-        console.log("📧 SMTP server is ready");
+        console.log("✅ Gmail SMTP server is ready");
     }
 });
 
