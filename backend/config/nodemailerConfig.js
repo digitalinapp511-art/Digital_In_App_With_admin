@@ -1,27 +1,29 @@
-const nodemailer = require('nodemailer')
-const express = require('express')
-const dotenv = require("dotenv");
-dotenv.config();
+const nodemailer = require("nodemailer");
 
 const transporter = nodemailer.createTransport({
-    service: "gmail",
+    host: "smtp.gmail.com",
+    port: 465,
+    secure: true,
+
+    family: 4,
+
     auth: {
         user: process.env.EMAILId,
         pass: process.env.EMAILPASS,
     },
+
+    connectionTimeout: 20000,
+    greetingTimeout: 20000,
+    socketTimeout: 20000,
 });
 
-
 transporter.verify((error, success) => {
-
     if (error) {
-        console.log("❌ Gmail Authentication Failed");
-        console.log(error.message);
+        console.log("❌ Gmail SMTP Connection Failed");
+        console.log(error);
     } else {
-        console.log("✅ Gmail Authentication Successful");
-        console.log("📧 SMTP server is ready to send emails");
+        console.log("✅ Gmail SMTP server is ready");
     }
-
 });
 
 module.exports = transporter;
