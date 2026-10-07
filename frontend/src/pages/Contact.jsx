@@ -65,6 +65,8 @@ function Contact() {
         budget: "",
       });
     } catch (error) {
+            console.log(error);
+
       setAlertType('danger')
       setAlerthMsg(error.response?.data?.message || 'Something went wrong')
       console.log(error?.response.data.message);
