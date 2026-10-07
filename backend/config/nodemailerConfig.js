@@ -1,20 +1,23 @@
 const nodemailer = require("nodemailer");
+const dns = require("dns");
+
+require("dotenv").config();
+
+dns.setDefaultResultOrder("ipv4first");
 
 const transporter = nodemailer.createTransport({
     host: "smtp.gmail.com",
     port: 587,
-    secure: true,
-
-    family: 4,
+    secure: false,
 
     auth: {
         user: process.env.EMAILId,
         pass: process.env.EMAILPASS,
     },
 
-    connectionTimeout: 20000,
-    greetingTimeout: 20000,
-    socketTimeout: 20000,
+    connectionTimeout: 30000,
+    greetingTimeout: 30000,
+    socketTimeout: 30000,
 });
 
 transporter.verify((error, success) => {
@@ -22,7 +25,8 @@ transporter.verify((error, success) => {
         console.log("❌ Gmail SMTP Connection Failed");
         console.log(error);
     } else {
-        console.log("✅ Gmail SMTP server is ready");
+        console.log("✅ Gmail Authentication Successful");
+        console.log("📧 SMTP server is ready");
     }
 });
 
