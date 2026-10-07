@@ -15,7 +15,7 @@ const himanshudB = require('./config/dbConfig')
 const transporter = require('./config/nodemailerConfig')
 const cors = require('cors')
 
-
+console.log(transporter)
 app.use(express.json())
 app.use(cors());
 
