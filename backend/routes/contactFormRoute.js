@@ -132,8 +132,9 @@ router.post('/send-mail', async (req, res) => {
         console.error("Email Error:", error);
         res.status(400).json({
             success: false,
-            message: "Email send faild...."
+            message: "Email send faild...." || error.message;
         })
+        console.log(error)
     }
 
 })
